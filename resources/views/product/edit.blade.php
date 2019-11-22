@@ -6,43 +6,43 @@
         <div class="form-group">
             <label class="control-label col-sm-2">Product Name</label>
             <div class="col-sm-10">
-                <input type="text" name="product_name" class="form-control" id="product_name" placeholder="Product Name" value="{{ $data->name }}">
+                <input type="text" name="name" class="form-control" id="product_name" placeholder="Product Name" value="{{ $data->name }}">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2">Rent Price</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="rent_price" placeholder="Rent Price" value="{{ $data->rent_price }}">
+                <input type="text" name="rent_price" class="form-control" id="rent_price" placeholder="Rent Price" value="{{ $data->rent_price }}">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2">List Price</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="list_price" placeholder="List Price" value="{{ $data->list_price }}">
+                <input type="text" class="form-control" id="list_price" placeholder="List Price" name="list_price" value="{{ $data->list_price }}">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2">Sale Price</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="sale_price" placeholder="Sale Price" value="{{ $data->sale_price }}">
+                <input type="text" name="sale_price" class="form-control" id="sale_price" placeholder="Sale Price" value="{{ $data->sale_price }}">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2">Sold Price</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="sold_price" placeholder="Sold Price" value="{{ $data->sold_price }}">
+                <input type="text" name="sold_price" class="form-control" id="sold_price" placeholder="Sold Price" value="{{ $data->sold_price }}">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2">Profile</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="sold_price" placeholder="Sold Price" value="{{ $data->profile }}">
+                <input type="text" name="profile" class="form-control" id="sold_price" placeholder="Sold Price" value="{{ $data->profile }}">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2">Gallery</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="sold_price" placeholder="Sold Price" value="{{ $data->gallery }}">
+                <input type="text" name="gallery" class="form-control" id="sold_price" placeholder="Sold Price" value="{{ $data->gallery }}">
             </div>
         </div>
         <div class="form-group">

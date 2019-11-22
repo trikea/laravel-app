@@ -15,13 +15,10 @@ class ProductHistoryController extends Controller
     public function index()
     {
         // $data = ProductHistory::with(['products'])->get();
-        // return view('product_history.index', compact('data'));
-        // DB::table('product_price_histories')->insert([
-        //     'name' => Str::random(10),
-        //     'email' => Str::random(10).'@gmail.com',
-        //     'password' => bcrypt('password'),
-        // ]);
-        $users = factory(ProductHistory::class, 1000)->create();
+        // return response()->json($data);
+
+        $data = ProductHistory::with(['products'])->get();
+        return view('product_history.index', compact('data'));
     }
 
     /**

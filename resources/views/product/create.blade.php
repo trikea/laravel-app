@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Product Name</label>
                     <div class="col-sm-10">
-                        <input type="text" name="product_name" class="form-control" id="product_name" placeholder="Product Name">
+                        <input type="text" name="name" class="form-control" id="product_name" placeholder="Product Name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -35,27 +35,28 @@
   <div class="form-group">
     <label class="control-label col-sm-2">Sale Price</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="sale_price" placeholder="Sale Price">
+      <input type="text" class="form-control" name="sale_price" id="sale_price" placeholder="Sale Price">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2">Sold Price</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="sold_price" placeholder="Sold Price">
+      <input type="text" class="form-control" name="sold_price" id="sold_price" placeholder="Sold Price">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Profile</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" name="profile" id="gallery" placeholder="Profile">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2">Gallery</label>
     <div class="col-sm-10">
-      <select class="form-control" id="" name="gallery">
-      <option value="">-- Select --</option>
-      </select>
+    <input type="text" class="form-control" name="gallery" id="gallery" placeholder="Gallery">
     </div>
   </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit</button>
-    </div>
+      <button type="submit" class="btn btn-primary btn-sm pull-right">Save</button>
   </div>
 </form>
  @endsection

@@ -22,6 +22,7 @@
                     <th>Sold Price</th>
                     <th>Profile</th>
                     <th>Gallery</th>
+                    <th>Total</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
@@ -35,6 +36,7 @@
                             <td>{{$product->sold_price}}</td>
                             <td>{{$product->profile}}</td>
                             <td>{{$product->gallery}}</td>
+                            <td>{{$product->total_price}}</td>
                             <td>
                                 <form action="{{route('products.destroy', $product->id)}}" method="post">
                                     <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning btn-sm">Edit</a>

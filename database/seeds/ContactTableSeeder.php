@@ -9,13 +9,12 @@ class ContactTableSeeder extends Seeder
     public function run()
     {
         Contact::create([
-            'name' => 'Testing',
+            'name'  => 'Testing',
             'phone' => '098765432',
         ]);
-        
-        // DB::table('contacts')->insert([
-        //         'name' => 'Flexi',
-        //         'phone'=> '093929324',
-        //         ]);
+        DB::table('contacts')->insert([
+            'name'  => 'Flexi',
+            'phone' => '093929324',
+        ]);
     }
 }

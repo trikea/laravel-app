@@ -13,6 +13,12 @@ class ProductStatusController extends Controller
      */
     public function index()
     {
+        // $create = ProductStatus::create([
+        //     'name'       => 'Testing',
+        // ]);
+        // $data = ProductStatus::get();
+        // return response()->json($data);
+
         $data = ProductStatus::get();
         return view('product_status.index', compact('data'));
     }
@@ -35,7 +41,12 @@ class ProductStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $product = ProductStatus::create($request->all());
+        return redirect('product_statuses')->with('success', 'Data Added successfully.');
+
     }
 
     /**

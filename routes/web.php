@@ -14,7 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::resource('contact', 'ContactController');
 Route::resource('products', 'ProductController');
 Route::resource('product_statuses', 'ProductStatusController');

@@ -17,15 +17,34 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // get all data response to json
-        // $products = Product::with(['product_price_histories'])->get();
-        // return response()->json($data);
-       
-        // DB::table('products')->insert([
-        //     ['name' => Str::random()],
-        //     ['name' => Str::random()]
+        /*
+        use index method to add new record into table products then
+        add this into table product_price_histories
+        */
+        // $product = Product::create([
+        //     'name'       => 'Iphone 11 Pro Max',
+        //     'rent_price' => '900',
+        //     'list_price' => '1000',
+        //     'sale_price' => '1400',
+        //     'sold_price' => '1600',
+        //     'profile'    => 'img-iphone-11',
+        //     'gallery'    => 'Phone',
+        //     'created_by' => 'admin',
+        //     'updated_by' => 'admin',
         // ]);
-        
+        // $product_history             = new ProductHistory();
+        // $product_history->rent_price = $product->rent_price;
+        // $product_history->list_price = $product->list_price;
+        // $product_history->sale_price = $product->sale_price;
+        // $product_history->created_by = $product->created_by;
+        // $product_history->updated_by = $product->updated_by;
+        // $product_history->product_id = $product->id;
+        // $product_history->save();
+
+        // get all record to show by response()->json()
+        // $products = Product::with(['product_price_histories'])->get();
+        // return response()->json($products);
+
         $products = Product::with(['product_price_histories'])->get();
         return view('product.index', compact('products'));
     }
@@ -48,6 +67,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required'
+        ]);
         // save into products table
         $product = Product::create($request->all());
         // save into product_price_histories
@@ -91,9 +113,26 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->only([
+            'name', 'name',
+            'rent_price', 'rent_price',
+            'list_price', 'list_price',
+            'sale_price', 'sale_price',
+            'sold_price', 'sold_price',
+            'profile',    'profile',
+            'gallery',  'gallery',
+        ]));
+        $product->product_price_histories()->create([
+            'rent_price', 'rent_price',
+            'list_price', 'list_price',
+            'sale_price', 'sale_price',
+            'sold_price', 'sold_price',
+            'profile',    'profile',
+            'gallery',  'gallery',
+        ]);
+        return redirect('products')->with('success', 'Data Updated successfully.');
     }
 
     /**
@@ -106,7 +145,6 @@ class ProductController extends Controller
     {
         $data = Product::findOrFail($id);
         $data->delete();
-
         return redirect('products')->with('success', 'Data is successfully deleted');
     }
 }
