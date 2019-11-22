@@ -9,6 +9,8 @@ class ProductCategoriesTableSeeder extends Seeder
      *
      * @return void
      */
+    // composer dump-autoload
+    // php artisan db:seed --class=ProductCategoriesTableSeeder
     public function run()
     {
         DB::table('product_categories')->insert([

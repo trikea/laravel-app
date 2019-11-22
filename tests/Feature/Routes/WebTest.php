@@ -14,6 +14,7 @@ class WebTest extends TestCase
     //     $response = $this->get('/contact');
     //     $response->assertStatus(200);
     // }
+    // must user name test for start of function name
     public function testVisitTheProductCategories()
     {
         $response = $this->get('/product_categories');

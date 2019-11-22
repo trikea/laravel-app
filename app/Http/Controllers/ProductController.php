@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
+use Validator;
+use App\Product;
+use App\ProductHistory;
+use Illuminate\Support\Facades\DB;
+// use for random string
+use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     /**
@@ -13,7 +17,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        // get all data response to json
+        // $products = Product::with(['product_price_histories'])->get();
+        // return response()->json($data);
+       
+        // DB::table('products')->insert([
+        //     ['name' => Str::random()],
+        //     ['name' => Str::random()]
+        // ]);
+        
+        $products = Product::with(['product_price_histories'])->get();
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -23,7 +37,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**
@@ -34,7 +48,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // save into products table
+        $product = Product::create($request->all());
+        // save into product_price_histories
+        $product_history             = new ProductHistory();
+        $product_history->rent_price = $product->rent_price;
+        $product_history->list_price = $product->list_price;
+        $product_history->sale_price = $product->sale_price;
+        $product_history->sold_price = $product->sold_price;
+        $product_history->product_id = $product->id;
+        $product_history->save();
+        return redirect('products')->with('success', 'Data Added successfully.');
     }
 
     /**
@@ -56,7 +80,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Product::findOrFail($id);
+        return view('product.edit', compact('data'));
     }
 
     /**
@@ -79,6 +104,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Product::findOrFail($id);
+        $data->delete();
+
+        return redirect('products')->with('success', 'Data is successfully deleted');
     }
 }
