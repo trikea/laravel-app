@@ -11,6 +11,8 @@ class PropertyStatusesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        PropertyStatus::create([
+            'name'  => 'Tesing',
+        ]);
     }
 }

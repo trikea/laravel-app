@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Zone;
+use App\Models\PropertyType;
+use App\Models\PropertyStatus;
+use App\Models\Shape;
 
 class PropertyController extends Controller
 {
@@ -15,7 +18,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $data = Property::with(['zone', 'shape', 'status', 'type'])->get();
+        // $data  = Property::with(['zone', 'shape', 'status', 'type'])->get();
+        $data  = Property::with(['zone'])->get();
         return view('properties.index', compact('data'));
     }
 
@@ -26,7 +30,11 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('properties.create');
+        $zones     = Zone::get();
+        $types     = PropertyType::get();
+        $statuses  = PropertyStatus::get();
+        $shapes    = Shape::get();
+        return view('properties.create', compact(['zones', 'types', 'statuses', 'shapes']));
     }
 
     /**
@@ -37,7 +45,20 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+        //     'name' => 'required'
+        // ]);
+        // save into products table
+        $data = Property::create($request->all());
+        // save into product_price_histories
+        // $product_history             = new ProductHistory();
+        // $product_history->rent_price = $product->rent_price;
+        // $product_history->list_price = $product->list_price;
+        // $product_history->sale_price = $product->sale_price;
+        // $product_history->sold_price = $product->sold_price;
+        // $product_history->product_id = $product->id;
+        // $product_history->save();
+        return redirect('properties')->with('success', 'Data Added successfully.');
     }
 
     /**
@@ -71,7 +92,24 @@ class PropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product->update($request->only([
+            'name', 'name',
+            'rent_price', 'rent_price',
+            'list_price', 'list_price',
+            'sale_price', 'sale_price',
+            'sold_price', 'sold_price',
+            'profile',    'profile',
+            'gallery',  'gallery',
+        ]));
+        $product->product_price_histories()->create([
+            'rent_price', 'rent_price',
+            'list_price', 'list_price',
+            'sale_price', 'sale_price',
+            'sold_price', 'sold_price',
+            'profile',    'profile',
+            'gallery',  'gallery',
+        ]);
+        return redirect('products')->with('success', 'Data Updated successfully.');
     }
 
     /**

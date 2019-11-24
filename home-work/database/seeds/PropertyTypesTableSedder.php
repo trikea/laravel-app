@@ -11,6 +11,8 @@ class PropertyTypesTableSedder extends Seeder
      */
     public function run()
     {
-        //
+        PropertyType::create([
+            'name'  => 'Testing',
+        ]);
     }
 }

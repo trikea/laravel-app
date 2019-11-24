@@ -11,6 +11,8 @@ class ZonesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Zone::create([
+            'name'  => 'Suoy Chheng',
+        ]);
     }
 }

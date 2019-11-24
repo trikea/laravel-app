@@ -11,6 +11,8 @@ class ShapesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Shape::create([
+            'name'  => 'Testing',
+        ]);
     }
 }

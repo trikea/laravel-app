@@ -10,6 +10,6 @@ class Zone extends Model
     protected $fillable = ['name', 'created_by', 'updated_by'];
     public function property()
     {
-        return $this->belongsTo('App\Models\Property', 'zone_id', 'id');
+        return $this->hasOne('App\Models\Property', 'zone_id', 'id');
     }
 }

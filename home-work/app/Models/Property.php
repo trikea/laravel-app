@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Akaunting\Money\Currency;
+use Akaunting\Money\Money;
+use Illuminate\Support\Str;
 
 class Property extends Model
 {
@@ -11,26 +14,26 @@ class Property extends Model
 
     public function zone()
     {
-        return $this->hasOne('App\Models\Zone', 'id', 'zone_id');
+        return $this->belongsTo('App\Models\Zone',  'zone_id', 'id');
     }
-    public function shape()
+    public function shapes()
     {
-        return $this->hasOne('App\Models\Shape', 'id', 'shape_id');
+        return $this->belongsTo('App\Models\Shape', 'shape_id', 'id');
     }
-    public function type()
+    public function types()
     {
-        return $this->hasOne('App\Models\PropertyType', 'id', 'property_type_id');
+        return $this->belongsTo('App\Models\PropertyType', 'property_type_id', 'id');
     }
-    public function status()
+    public function statuses()
     {
-        return $this->hasOne('App\Models\PropertyStatus', 'id', 'property_status_id');
+        return $this->belongsTo('App\Models\PropertyStatus', 'property_status_id', 'id');
     }
     public function property_price_histories()
     {
-        return $this->hasMany('App\Models\PropertyStatus', 'id', 'property_id');
+        return $this->hasMany('App\Models\PropertyPriceHistory', 'property_id', 'id');
     }
-    public function getCodeAttribute()
+    public function setCodeAttribute($value)
     {
-        return str_pad($this->id, 4, "0", STR_PAD_LEFT);
+        $this->attributes['code'] = Str::random(6);
     }
 }

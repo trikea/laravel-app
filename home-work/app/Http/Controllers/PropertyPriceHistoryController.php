@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Shape;
+use App\Models\Property;
+use App\Models\PropertyPriceHistory;
 
-class ShapeController extends Controller
+class PropertyPriceHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ShapeController extends Controller
      */
     public function index()
     {
-        $data = Shape::get();
-        return view('shapes.index', compact('data'));
+        $data  = PropertyPriceHistory::with(['property'])->get();
+        return view('property_price_histories.index', compact('data'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ShapeController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -36,9 +37,7 @@ class ShapeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
-        $data = Shape::create($request->all());
-        return redirect('shapes')->with('success', 'Data Added successfully.');
+        //
     }
 
     /**
@@ -60,8 +59,7 @@ class ShapeController extends Controller
      */
     public function edit($id)
     {
-        $data = Shape::findOrFail($id);
-        return view('shapes.edit', compact('data'));
+        //
     }
 
     /**
@@ -73,9 +71,7 @@ class ShapeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['name' => 'required']);
-        Shape::whereId($id)->update($request->only(['name', 'name']));
-        return redirect('shapes')->with('success', 'Data Updated successfully.');
+        //
     }
 
     /**
@@ -86,8 +82,6 @@ class ShapeController extends Controller
      */
     public function destroy($id)
     {
-        $data = Shape::findOrFail($id);
-        $data->delete();
-        return redirect('shapes')->with('success', 'Data is successfully deleted');
+        //
     }
 }

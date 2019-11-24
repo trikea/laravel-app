@@ -18,10 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('properties', 'PropertyController');
-Route::resource('property_statuses', 'PropertyStatusController');
-Route::resource('property_types', 'PropertyTypeController');
-Route::resource('zones', 'ZoneController');
-Route::resource('shapes', 'ShapeController');
-
+Route::group(['middleware' => 'auth'], function()
+{
+	Route::resource('properties', 'PropertyController');
+	Route::resource('property_statuses', 'PropertyStatusController');
+	Route::resource('property_types', 'PropertyTypeController');
+	Route::resource('zones', 'ZoneController');
+	Route::resource('shapes', 'ShapeController');
+	Route::resource('property_price_histories', 'PropertyPriceHistoryController');
+});
 
