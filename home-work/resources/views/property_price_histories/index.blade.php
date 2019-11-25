@@ -12,11 +12,11 @@
     <tbody>
     @foreach($data as $row)
         <tr>
-            <td>{{ $row->property->name }}</td>
-            <td>{{ $row->rent_price }}</td>
-            <td>{{ $row->sale_price }}</td>
-            <td>{{ $row->list_price }}</td>
-            <td>{{ $row->sold_price }}</td>
+            <td>{{ @$row->property->name }}</td>
+            <td>{{ @$row->rent_price }}</td>
+            <td>{{ @$row->sale_price }}</td>
+            <td>{{ @$row->list_price }}</td>
+            <td>{{ @$row->sold_price }}</td>
         </tr>
     @endforeach
     </tbody>

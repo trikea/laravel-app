@@ -8,6 +8,8 @@ use App\Models\Zone;
 use App\Models\PropertyType;
 use App\Models\PropertyStatus;
 use App\Models\Shape;
+use App\Models\PropertyPriceHistory;
+use App\Http\Requests\StoreProperty;
 
 class PropertyController extends Controller
 {
@@ -18,8 +20,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        // $data  = Property::with(['zone', 'shape', 'status', 'type'])->get();
-        $data  = Property::with(['zone'])->get();
+        $data  = Property::with(['zone', 'shape', 'status', 'type'])->get();
         return view('properties.index', compact('data'));
     }
 
@@ -43,21 +44,16 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProperty $request, Property $property)
     {
-        // $request->validate([
-        //     'name' => 'required'
-        // ]);
-        // save into products table
-        $data = Property::create($request->all());
-        // save into product_price_histories
-        // $product_history             = new ProductHistory();
-        // $product_history->rent_price = $product->rent_price;
-        // $product_history->list_price = $product->list_price;
-        // $product_history->sale_price = $product->sale_price;
-        // $product_history->sold_price = $product->sold_price;
-        // $product_history->product_id = $product->id;
-        // $product_history->save();
+        $validated = $request->validated();
+        $property->create($request->all());
+        $property->property_price_histories()->create($request->only([
+            'rent_price', 'rent_price',
+            'list_price', 'list_price',
+            'sale_price', 'sale_price',
+            'sold_price', 'sold_price',
+        ]));
         return redirect('properties')->with('success', 'Data Added successfully.');
     }
 
@@ -69,7 +65,12 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        $zones     = Zone::get();
+        $types     = PropertyType::get();
+        $statuses  = PropertyStatus::get();
+        $shapes    = Shape::get();
+        $data      = Property::findOrFail($id);
+        return view('properties.show', compact(['zones', 'types', 'statuses', 'shapes', 'data']));
     }
 
     /**
@@ -80,7 +81,12 @@ class PropertyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $zones     = Zone::get();
+        $types     = PropertyType::get();
+        $statuses  = PropertyStatus::get();
+        $shapes    = Shape::get();
+        $data      = Property::findOrFail($id);
+        return view('properties.edit', compact(['zones', 'types', 'statuses', 'shapes', 'data']));
     }
 
     /**
@@ -90,26 +96,27 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreProperty $request, Property $property)
     {
-        $product->update($request->only([
+        $validated = $request->validated();
+        $property->update($request->only([
             'name', 'name',
+            'property_type_id', 'property_type_id',
+            'zone_id', 'zone_id',
+            'preperty_status_id', 'preperty_status_id',
+            'shape_id', 'shape_id',
             'rent_price', 'rent_price',
             'list_price', 'list_price',
             'sale_price', 'sale_price',
             'sold_price', 'sold_price',
-            'profile',    'profile',
-            'gallery',  'gallery',
         ]));
-        $product->product_price_histories()->create([
+        $property->property_price_histories()->create($request->only([
             'rent_price', 'rent_price',
             'list_price', 'list_price',
             'sale_price', 'sale_price',
             'sold_price', 'sold_price',
-            'profile',    'profile',
-            'gallery',  'gallery',
-        ]);
-        return redirect('products')->with('success', 'Data Updated successfully.');
+        ]));
+        return redirect('properties')->with('success', 'Data Updated successfully.');
     }
 
     /**

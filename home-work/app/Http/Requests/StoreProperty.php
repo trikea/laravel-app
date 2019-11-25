@@ -13,7 +13,7 @@ class StoreProperty extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,32 @@ class StoreProperty extends FormRequest
     public function rules()
     {
         return [
-            
-
-
-
+            'name'             => 'required',
+            'zone_id'          => 'required',
+            'property_type_id' => 'required',
+            'shape_id'         => 'required',
+            'rent_price'        => 'required|numeric',
+            'sold_price'       => 'required|numeric',
+            'list_price'       => 'required|numeric',
+            'sale_price'       => 'required|numeric',
+        ];
+        
+    }
+    public function messages()
+    {
+        return [
+            'name.required'              => 'Product name is required',
+            'zone_id.required'           => 'Zone is required',
+            'property_type_id.required'  => 'Type is required',
+            'shape_id.required'          => 'Shape is required',
+            'rent_price.required'        => 'Rent price is required',
+            'sold_price.required'        => 'Sold price required',
+            'list_price.required'        => 'List price required',
+            'sale_price.required'        => 'Sale price is required',
+            'sale_price.numeric'         => 'Sale price must be a number',
+            'list_price.numeric'         => 'List price must be a number',
+            'sold_price.numeric'         => 'Sold price must be a number',
+            'rent_price.numeric'         => 'Rent price must be a number',
         ];
     }
 }

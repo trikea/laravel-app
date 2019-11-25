@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     	// php artisan db:seed
         $this->call([
 	        UsersTableSeeder::class,
-	        ZonesTableSeeder::class,
+	        ZoneTableSeeder::class,
 	        ShapesTableSeeder::class,
 	        PropertyTypesTableSeeder::class,
 	        PropertyStatusesTableSeeder::class,

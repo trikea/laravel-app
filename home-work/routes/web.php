@@ -20,6 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function()
 {
+	Route::get('locale/{locale}', function ($locale){
+		Session::put('locale', $locale);
+		return redirect()->back();
+	});
 	Route::resource('properties', 'PropertyController');
 	Route::resource('property_statuses', 'PropertyStatusController');
 	Route::resource('property_types', 'PropertyTypeController');

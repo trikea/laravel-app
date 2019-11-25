@@ -16,15 +16,15 @@ class Property extends Model
     {
         return $this->belongsTo('App\Models\Zone',  'zone_id', 'id');
     }
-    public function shapes()
+    public function shape()
     {
         return $this->belongsTo('App\Models\Shape', 'shape_id', 'id');
     }
-    public function types()
+    public function type()
     {
         return $this->belongsTo('App\Models\PropertyType', 'property_type_id', 'id');
     }
-    public function statuses()
+    public function status()
     {
         return $this->belongsTo('App\Models\PropertyStatus', 'property_status_id', 'id');
     }
@@ -35,5 +35,8 @@ class Property extends Model
     public function setCodeAttribute($value)
     {
         $this->attributes['code'] = Str::random(6);
+    }
+    public function getRentPriceAttribute()
+    {
     }
 }
