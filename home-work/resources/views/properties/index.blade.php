@@ -1,11 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
-@if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{$message}}</p>
-    </div>
-@endif 
+@include('components.alert')
 <a href="{{ route('properties.create') }}" class="btn btn-info">Add New</a>
 <br>
 <br>
@@ -38,11 +34,11 @@
             <td>{{ @$row->sold_price }}</td>
             <td>
                 <form action="{{ route('properties.destroy', $row->id) }}" method="post">
-                    <a href="{{ route('properties.show', $row->id) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                    <a href="{{ route('properties.edit', $row->id) }}" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></i></a>
+                    <a href="{{ route('properties.show', $row->id) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i>Show</a>
+                    <a href="{{ route('properties.edit', $row->id) }}" class="btn btn-warning">Edit</a>
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>

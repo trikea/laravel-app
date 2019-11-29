@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Libraries\MyTypeTrait\MyTypeTrait;
 
 class Shape extends Model
 {
-    protected $table    = 'shapes';
+    use MyTypeTrait;
     protected $fillable = ['name', 'created_by', 'updated_by'];
     public function property()
     {
@@ -14,6 +15,6 @@ class Shape extends Model
     }
     public function getCodeAttribute()
     {
-        return str_pad($this->id, 4, "0", STR_PAD_LEFT);
+        return str_pad($this->id, '6', '0', STR_PAD_LEFT);
     }
 }

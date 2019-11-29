@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Libraries\MyTypeTrait\MyTypeTrait;
 
 class PropertyPriceHistory extends Model
 {
-    protected $table    = 'property_price_histories';
+	use MyTypeTrait;
     protected $fillable = ['property_id', 'rent_price', 'sale_price', 'list_price', 'sold_price'];
     public function property()
     {

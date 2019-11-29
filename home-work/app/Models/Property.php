@@ -3,15 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Akaunting\Money\Currency;
-use Akaunting\Money\Money;
-use Illuminate\Support\Str;
+use App\Libraries\MyTypeTrait\MyTypeTrait;
 
 class Property extends Model
 {
-    protected $table    = 'properties';
+    use MyTypeTrait;
+    public static function boot()
+    {
+        parent::boot();
+        static::created(function($obj) {
+            $obj->code = str_pad($obj->id, '6', '0', STR_PAD_LEFT);
+            $obj->save();
+        });
+    }
     protected $fillable = ['name', 'code', 'property_type_id', 'property_status_id', 'zone_id', 'shape_id', 'rent_price', 'sale_price', 'list_price', 'sold_price', 'created_by', 'updated_by'];
-
     public function zone()
     {
         return $this->belongsTo('App\Models\Zone',  'zone_id', 'id');
@@ -31,12 +36,5 @@ class Property extends Model
     public function property_price_histories()
     {
         return $this->hasMany('App\Models\PropertyPriceHistory', 'property_id', 'id');
-    }
-    public function setCodeAttribute($value)
-    {
-        $this->attributes['code'] = Str::random(6);
-    }
-    public function getRentPriceAttribute()
-    {
     }
 }

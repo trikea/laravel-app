@@ -14,8 +14,9 @@ class ZoneController extends Controller
      */
     public function index()
     {
-        $data = Zone::get();
-        return view('zones.index', compact('data'));
+        $data['data'] = Zone::get();
+        $data['url']  = route('zones.store');
+        return view('zones.index', $data);
     }
 
     /**

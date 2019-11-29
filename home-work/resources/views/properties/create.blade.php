@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-<form action="{{ route('properties.store') }}" method="post">
+<form action="{{ route('properties.store') }}" method="post" class="">
     @csrf
-    <input type="hidden" name="code" class="form-control" id="">
     <div class="form-group">
         <label>{{ __('messages.name') }}</label>
         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="">

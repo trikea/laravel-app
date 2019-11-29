@@ -13,8 +13,9 @@ class PropertyTypeController extends Controller
      */
     public function index()
     {
-        $data = PropertyType::get();
-        return view('types.index', compact('data'));
+        $data['data'] = PropertyType::get();
+        $data['url']  = route('property_types.store');
+        return view('types.index', $data);
     }
 
     /**

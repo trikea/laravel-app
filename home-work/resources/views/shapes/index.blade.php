@@ -1,29 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-<form action="{{ route('shapes.store') }}" method="post">
-    @csrf
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-	        <p>{{$message}}</p>
-        </div>
-    @endif
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif  
-    <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" id="">
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
-<br>
+@include('components.alert')
+@include('components.sample_form')
 <br>
 <table class="table table-bordered table-striped">
     <thead>

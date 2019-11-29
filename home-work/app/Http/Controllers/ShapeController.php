@@ -14,8 +14,9 @@ class ShapeController extends Controller
      */
     public function index()
     {
-        $data = Shape::get();
-        return view('shapes.index', compact('data'));
+        $data['data'] = Shape::get();
+        $data['url']  = route('shapes.store');
+        return view('shapes.index', $data);
     }
 
     /**

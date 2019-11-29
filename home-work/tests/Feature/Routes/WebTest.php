@@ -27,22 +27,26 @@ class WebTest extends TestCase
     // }
     public function testIsPropertyTypesPageExists()
     {
-        $response = $this->get('/property_types');
+        $user = \Auth::loginUsingId(1);
+        $response = $this->actingAs($user)->get('/property_types');
         $response->assertStatus(200);
     }
     public function testIsPropertyStatusesPageExists()
     {
-        $response = $this->get('/property_statuses');
+        $user = \Auth::loginUsingId(1);
+        $response = $this->actingAs($user)->get('/property_statuses');
         $response->assertStatus(200);
     }
     public function testIsZonesPageExists()
     {
-        $response = $this->get('/zones');
+        $user = \Auth::loginUsingId(1);
+        $response = $this->actingAs($user)->get('/zones');
         $response->assertStatus(200);
     }
     public function testIsShapesPageExists()
     {
-        $response = $this->get('/shapes');
+        $user = \Auth::loginUsingId(1);
+        $response = $this->actingAs($user)->get('/shapes');
         $response->assertStatus(200);
     }
 }
