@@ -37,7 +37,7 @@ class ShapeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['name' => 'required|min:3|max:255']);
         $data = Shape::create($request->all());
         return redirect('shapes')->with('success', 'Data Added successfully.');
     }
@@ -74,7 +74,7 @@ class ShapeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['name' => 'required|min:3|max:255']);
         Shape::whereId($id)->update($request->only(['name', 'name']));
         return redirect('shapes')->with('success', 'Data Updated successfully.');
     }

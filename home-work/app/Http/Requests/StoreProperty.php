@@ -24,14 +24,15 @@ class StoreProperty extends FormRequest
     public function rules()
     {
         return [
-            'name'             => 'required',
-            'zone_id'          => 'required',
-            'property_type_id' => 'required',
-            'shape_id'         => 'required',
-            'rent_price'        => 'required|numeric',
-            'sold_price'       => 'required|numeric',
-            'list_price'       => 'required|numeric',
-            'sale_price'       => 'required|numeric',
+            'name'               => 'required|min:3|max:255',
+            'zone_id'            => 'required',
+            'property_type_id'   => 'required',
+            'property_status_id' => 'required',
+            'shape_id'           => 'required',
+            'rent_price'         => 'required|numeric',
+            'sold_price'         => 'required|numeric',
+            'list_price'         => 'required|numeric',
+            'sale_price'         => 'required|numeric',
         ];
         
     }

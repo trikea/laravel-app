@@ -37,7 +37,7 @@ class ZoneController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['name' => 'required|min:3|max:255']);
         $data = Zone::create($request->all());
         return redirect('zones')->with('success', 'Data Added successfully.');
     }
@@ -74,7 +74,7 @@ class ZoneController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['name' => 'required|min:3|max:255']);
         Zone::whereId($id)->update($request->only(['name', 'name']));
         return redirect('zones')->with('success', 'Data Updated successfully.');
     }

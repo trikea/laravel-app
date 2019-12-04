@@ -55,10 +55,20 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProperty $request, Property $property)
+    public function store(StoreProperty $request)
     {
         $validated = $request->validated();
-        $property->create($request->all());
+        $property = Property::create($request->only([
+            'name',
+            'property_type_id',
+            'zone_id',
+            'property_status_id',
+            'shape_id',
+            'rent_price',
+            'list_price',
+            'sale_price',
+            'sold_price',
+        ]));
         $property->property_price_histories()->create($request->only([
             'rent_price',
             'list_price',
@@ -117,21 +127,21 @@ class PropertyController extends Controller
     {
         $validated = $request->validated();
         $property->update($request->only([
-            'name', 'name',
-            'property_type_id', 'property_type_id',
-            'zone_id', 'zone_id',
-            'preperty_status_id', 'preperty_status_id',
-            'shape_id', 'shape_id',
-            'rent_price', 'rent_price',
-            'list_price', 'list_price',
-            'sale_price', 'sale_price',
-            'sold_price', 'sold_price',
+            'name',
+            'property_type_id',
+            'zone_id',
+            'property_status_id',
+            'shape_id',
+            'rent_price',
+            'list_price',
+            'sale_price',
+            'sold_price',
         ]));
         $property->property_price_histories()->create($request->only([
-            'rent_price', 'rent_price',
-            'list_price', 'list_price',
-            'sale_price', 'sale_price',
-            'sold_price', 'sold_price',
+            'rent_price',
+            'list_price',
+            'sale_price',
+            'sold_price',
         ]));
         // $oldEntry = Property::find($property->id);
         // $property->update($request->only([

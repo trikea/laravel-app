@@ -6,7 +6,7 @@
     @method('PATCH') 
     <div class="form-group">
         <label>{{ __('messages.name') }}</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" value="{{ $data->name }}">
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" value="{{ old('name', $data->name) }}">
         @error('name')
             <div class="text-danger">{{ $message }}</div>
         @enderror

@@ -15,7 +15,7 @@ class PropertyStatusController extends Controller
     {
         $data['data'] = PropertyStatus::get();
         $data['url']  = route('property_statuses.store');
-        return view('types.index', $data);
+        return view('statuses.index', $data);
     }
 
     /**
@@ -36,7 +36,7 @@ class PropertyStatusController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['name' => 'required|min:3|max:255']);
         $data = PropertyStatus::create($request->all());
         return redirect('property_statuses')->with('success', 'Data Added successfully.');
     }
@@ -73,7 +73,7 @@ class PropertyStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['name' => 'required|min:3|max:255']);
         PropertyStatus::whereId($id)->update($request->only(['name', 'name']));
         return redirect('property_statuses')->with('success', 'Data Updated successfully.');
     }

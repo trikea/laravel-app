@@ -5,7 +5,7 @@
     @csrf
     <div class="form-group">
         <label>{{ __('messages.name') }}</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="">
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" value="{{ old('name') }}">
         @error('name')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -15,7 +15,7 @@
         <select class="form-control @error('property_type_id') is-invalid @enderror" id="" name="property_type_id">
             <option value="">-- Select Type --</option>
             @foreach ($types as $data)
-                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                <option value="{{ $data->id }}" {{ (old("property_type_id") == $data->id ? "selected":"") }}>{{ $data->name }}</option>
             @endforeach
         </select>
         @error('property_type_id')
@@ -27,7 +27,7 @@
         <select class="form-control @error('zone_id') is-invalid @enderror" id="" name="zone_id">
             <option value="">-- Select Zone --</option>
             @foreach ($zones as $data)
-                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                <option value="{{ $data->id }}" {{ (old("zone_id") == $data->id ? "selected":"") }}>{{ $data->name }}</option>
             @endforeach
         </select>
         @error('zone_id')
@@ -39,7 +39,7 @@
         <select class="form-control @error('shape_id') is-invalid @enderror" id="" name="shape_id">
             <option value="">-- Select Shape --</option>
             @foreach ($shapes as $data)
-                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                <option value="{{ $data->id }}" {{ (old("shape_id") == $data->id ? "selected":"") }}>{{ $data->name }}</option>
             @endforeach
         </select>
         @error('shape_id')
@@ -48,39 +48,42 @@
     </div>
     <div class="form-group">
         <label>{{ __('messages.rent_price') }}</label>
-        <input type="text" name="rent_price" class="form-control @error('rent_price') is-invalid @enderror" id="">
+        <input type="text" name="rent_price" class="form-control @error('rent_price') is-invalid @enderror" id="" value="{{ old('rent_price') }}">
         @error('rent_price')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label>{{ __('messages.sale_price') }}</label>
-        <input type="text" name="sale_price" class="form-control @error('sale_price') is-invalid @enderror" id="">
+        <input type="text" name="sale_price" class="form-control @error('sale_price') is-invalid @enderror" id="" value="{{ old('sale_price') }}">
         @error('sale_price')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label>{{ __('messages.list_price') }}</label>
-        <input type="text" name="list_price" class="form-control @error('list_price') is-invalid @enderror" id="">
+        <input type="text" name="list_price" class="form-control @error('list_price') is-invalid @enderror" id="" value="{{ old('list_price') }}">
         @error('list_price')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label>{{ __('messages.sold_price') }}</label>
-        <input type="text" name="sold_price" class="form-control @error('sold_price') is-invalid @enderror" id="">
+        <input type="text" name="sold_price" class="form-control @error('sold_price') is-invalid @enderror" id="" value="{{ old('sold_price') }}">
         @error('sold_price')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="">{{ __('messages.status') }}</label>
-        <select class="form-control" id="" name="property_status_id">
+        <select class="form-control @error('property_status_id') is-invalid @enderror" id="" name="property_status_id">
             <option value="">-- Select Status --</option>
             @foreach ($statuses as $data)
-                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                <option value="{{ $data->id }}" {{ (old("property_status_id") == $data->id ? "selected":"") }}>{{ $data->name }}</option>
             @endforeach
+            @error('property_status_id')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

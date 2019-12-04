@@ -36,7 +36,7 @@ class PropertyTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['name' => 'required|min:3|max:255']);
         $data = PropertyType::create($request->all());
         return redirect('property_types')->with('success', 'Data Added successfully.');
     }
@@ -73,7 +73,7 @@ class PropertyTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['name' => 'required|min:3|max:255']);
         PropertyType::whereId($id)->update($request->only(['name', 'name']));
         return redirect('property_types')->with('success', 'Data Updated successfully.');
     }

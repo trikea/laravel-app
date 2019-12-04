@@ -7,7 +7,7 @@
     <input type="hidden" name="code" class="form-control" id="">
     <div class="form-group">
         <label>Product Name</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" value="{{ $data->name }}">
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" value="{{ old('name', $data->name) }}">
         @error('name')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -38,28 +38,28 @@
     </div>
     <div class="form-group">
         <label>Rent Price</label>
-        <input type="text" name="rent_price" class="form-control @error('rent_price') is-invalid @enderror" id="" value="{{ @$data->rent_price }}">
+        <input type="text" name="rent_price" class="form-control @error('rent_price') is-invalid @enderror" id="" value="{{ old('rent_price', @$data->rent_price) }}">
         @error('rent_price')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label>Sale Price</label>
-        <input type="text" name="sale_price" class="form-control @error('sale_price') is-invalid @enderror" id="" value="{{ @$data->sale_price }}">
+        <input type="text" name="sale_price" class="form-control @error('sale_price') is-invalid @enderror" id="" value="{{ old('sale_price', @$data->sale_price) }}">
         @error('sale_price')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label>List Price</label>
-        <input type="text" name="list_price" class="form-control @error('list_price') is-invalid @enderror" id="" value="{{ @$data->list_price }}">
+        <input type="text" name="list_price" class="form-control @error('list_price') is-invalid @enderror" id="" value="{{ old('list_price', @$data->list_price) }}">
         @error('list_price')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label>Sold Price</label>
-        <input type="text" name="sold_price" class="form-control @error('sold_price') is-invalid @enderror" id="" value="{{ @$data->sold_price }}">
+        <input type="text" name="sold_price" class="form-control @error('sold_price') is-invalid @enderror" id="" value="{{ old('sold_price', @$data->sold_price) }}">
         @error('sold_price')
             <div class="text-danger">{{ $message }}</div>
         @enderror
