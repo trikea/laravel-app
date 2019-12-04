@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Zone;
+use App\Models\Property;
 
 class ZoneController extends Controller
 {
@@ -87,8 +88,14 @@ class ZoneController extends Controller
      */
     public function destroy($id)
     {
-        $data = Zone::findOrFail($id);
-        $data->delete();
-        return redirect('zones')->with('success', 'Data is successfully deleted');
+        $check = Property::has('zone')->count();
+        if($check > 0) {
+            return redirect('zones')->with('warning', 'You can not delete this record');
+        }
+        else {
+            $data = Zone::findOrFail($id);
+            $data->delete();
+            return redirect('zones')->with('success', 'Data is successfully deleted');
+        }
     }
 }

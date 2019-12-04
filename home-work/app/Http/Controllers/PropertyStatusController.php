@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PropertyStatus;
+use App\Models\Property;
+
 class PropertyStatusController extends Controller
 {
     /**
@@ -86,8 +88,17 @@ class PropertyStatusController extends Controller
      */
     public function destroy($id)
     {
-        $data = PropertyStatus::findOrFail($id);
-        $data->delete();
-        return redirect('property_statuses')->with('success', 'Data is successfully deleted');
+        // $data = PropertyStatus::findOrFail($id);
+        // $data->delete();
+        // return redirect('property_statuses')->with('success', 'Data is successfully deleted');
+        $check = Property::has('status')->count();
+        if($check > 0) {
+            return redirect('property_statuses')->with('warning', 'You can not delete this record');
+        }
+        else {
+            $data = PropertyStatus::findOrFail($id);
+            $data->delete();
+            return redirect('property_statuses')->with('success', 'Data is successfully deleted');
+        }
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PropertyType;
+use App\Models\Property;
+
 class PropertyTypeController extends Controller
 {
     /**
@@ -86,8 +88,17 @@ class PropertyTypeController extends Controller
      */
     public function destroy($id)
     {
-        $data = PropertyType::findOrFail($id);
-        $data->delete();
-        return redirect('property_types')->with('success', 'Data is successfully deleted');
+        // $data = PropertyType::findOrFail($id);
+        // $data->delete();
+        // return redirect('property_types')->with('success', 'Data is successfully deleted');
+        $check = Property::has('type')->count();
+        if($check > 0) {
+            return redirect('property_types')->with('warning', 'You can not delete this record');
+        }
+        else {
+            $data = PropertyType::findOrFail($id);
+            $data->delete();
+            return redirect('property_types')->with('success', 'Data is successfully deleted');
+        }
     }
 }

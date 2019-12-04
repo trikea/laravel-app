@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shape;
+use App\Models\Property;
 
 class ShapeController extends Controller
 {
@@ -87,8 +88,17 @@ class ShapeController extends Controller
      */
     public function destroy($id)
     {
-        $data = Shape::findOrFail($id);
-        $data->delete();
-        return redirect('shapes')->with('success', 'Data is successfully deleted');
+        // $data = Shape::findOrFail($id);
+        // $data->delete();
+        // return redirect('shapes')->with('success', 'Data is successfully deleted');
+        $check = Property::has('shape')->count();
+        if($check > 0) {
+            return redirect('shapes')->with('warning', 'You can not delete this record');
+        }
+        else {
+            $data = Shape::findOrFail($id);
+            $data->delete();
+            return redirect('shapes')->with('success', 'Data is successfully deleted');
+        }
     }
 }
