@@ -58,35 +58,35 @@ class PropertyController extends Controller
     public function store(StoreProperty $request)
     {
         $validated = $request->validated();
-        $property = Property::create($request->only([
-            'name',
-            'property_type_id',
-            'zone_id',
-            'property_status_id',
-            'shape_id',
-            'rent_price',
-            'list_price',
-            'sale_price',
-            'sold_price',
-        ]));
-        $property->property_price_histories()->create($request->only([
-            'rent_price',
-            'list_price',
-            'sale_price',
-            'sold_price',
-        ]));
-        // $create = Property::create($request->only([
+        // $property = Property::create($request->only([
         //     'name',
         //     'property_type_id',
         //     'zone_id',
-        //     'preperty_status_id',
+        //     'property_status_id',
         //     'shape_id',
         //     'rent_price',
         //     'list_price',
         //     'sale_price',
         //     'sold_price',
         // ]));
-        // PropertyLib::createPropertyPriceHistory($create);
+        // $property->property_price_histories()->create($request->only([
+        //     'rent_price',
+        //     'list_price',
+        //     'sale_price',
+        //     'sold_price',
+        // ]));
+        $create = Property::create($request->only([
+            'name',
+            'property_type_id',
+            'zone_id',
+            'preperty_status_id',
+            'shape_id',
+            'rent_price',
+            'list_price',
+            'sale_price',
+            'sold_price',
+        ]));
+        PropertyLib::createPropertyPriceHistory($create);
         return redirect('properties')->with('success', 'Data Added successfully.');
     }
 
@@ -126,36 +126,37 @@ class PropertyController extends Controller
     public function update(StoreProperty $request, Property $property)
     {
         $validated = $request->validated();
-        $property->update($request->only([
-            'name',
-            'property_type_id',
-            'zone_id',
-            'property_status_id',
-            'shape_id',
-            'rent_price',
-            'list_price',
-            'sale_price',
-            'sold_price',
-        ]));
-        $property->property_price_histories()->create($request->only([
-            'rent_price',
-            'list_price',
-            'sale_price',
-            'sold_price',
-        ]));
-        // $oldEntry = Property::find($property->id);
+        
         // $property->update($request->only([
         //     'name',
         //     'property_type_id',
         //     'zone_id',
-        //     'preperty_status_id',
+        //     'property_status_id',
         //     'shape_id',
         //     'rent_price',
         //     'list_price',
         //     'sale_price',
         //     'sold_price',
         // ]));
-        // PropertyLib::createPropertyPriceHistory($property, $oldEntry);
+        // $property->property_price_histories()->create($request->only([
+        //     'rent_price',
+        //     'list_price',
+        //     'sale_price',
+        //     'sold_price',
+        // ]));
+        $oldEntry = Property::find($property->id);
+        $property->update($request->only([
+            'name',
+            'property_type_id',
+            'zone_id',
+            'preperty_status_id',
+            'shape_id',
+            'rent_price',
+            'list_price',
+            'sale_price',
+            'sold_price',
+        ]));
+        PropertyLib::createPropertyPriceHistory($property, $oldEntry);
         return redirect('properties')->with('success', 'Data Updated successfully.');
     }
 
