@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function()
 		Session::put('locale', $locale);
 		return redirect()->back();
 	});
+	
 	Route::resource('properties', 'PropertyController');
 	Route::resource('property_statuses', 'PropertyStatusController');
 	Route::resource('property_types', 'PropertyTypeController');
