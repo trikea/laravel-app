@@ -88,14 +88,14 @@ class ZoneController extends Controller
      */
     public function destroy($id)
     {
-        $check = Property::has('zone')->count();
-        if($check > 0) {
+        $check = Property::where('zone_id')->first();
+        if($check) {
             return redirect('zones')->with('warning', 'You can not delete this record');
         }
-        else {
+        // else {
             $data = Zone::findOrFail($id);
             $data->delete();
             return redirect('zones')->with('success', 'Data is successfully deleted');
-        }
+        
     }
 }
