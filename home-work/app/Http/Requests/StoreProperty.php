@@ -25,10 +25,10 @@ class StoreProperty extends FormRequest
     {
         return [
             'name'               => 'required|min:3|max:255',
-            'zone_id'            => 'required',
-            'property_type_id'   => 'required',
-            'property_status_id' => 'required',
-            'shape_id'           => 'required',
+            'zone_id'            => 'required|in:zones',
+            'property_type_id'   => 'required|in:property_types',
+            'property_status_id' => 'required|in:property_statuses',
+            'shape_id'           => 'required|in:shapes',
             'rent_price'         => 'required|numeric',
             'sold_price'         => 'required|numeric',
             'list_price'         => 'required|numeric',
