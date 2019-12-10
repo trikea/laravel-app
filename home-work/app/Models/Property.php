@@ -33,7 +33,7 @@ class Property extends Model
     {
         return $this->belongsTo('App\Models\PropertyStatus', 'property_status_id', 'id');
     }
-    public function property_price_histories()
+    public function propertyPriceHistories()
     {
         return $this->hasMany('App\Models\PropertyPriceHistory', 'property_id', 'id');
     }

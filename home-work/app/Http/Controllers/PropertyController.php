@@ -169,6 +169,7 @@ class PropertyController extends Controller
     public function destroy($id)
     {
         $data = Property::findOrFail($id);
+        $data->propertyPriceHistories()->delete();
         $data->delete();
         return redirect('properties')->with('success', 'Data is successfully deleted');
     }
