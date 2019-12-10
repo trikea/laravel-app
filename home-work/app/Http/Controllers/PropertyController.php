@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Zone;
@@ -87,6 +88,7 @@ class PropertyController extends Controller
             'sold_price',
         ]));
         PropertyLib::createPropertyPriceHistory($create);
+        Mail::to('trikeameng93@gmail.com')->send(new TestMail($create));
         return redirect('properties')->with('success', 'Data Added successfully.');
     }
 
@@ -99,7 +101,7 @@ class PropertyController extends Controller
     public function show($id)
     {
         $data         = ['zones', 'types', 'statuses', 'shapes'];
-        $data['data'] = Property::with('property_price_histories')->findOrFail($id);
+        $data['data'] = Property::with('propertyPriceHistories')->findOrFail($id);
         return view('properties.show', $data);
     }
 

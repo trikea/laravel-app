@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($data->property_price_histories as $key)
+        @foreach($data->propertyPriceHistories as $key)
             <tr>
                 <td>{{@$key->rent_price}}</td>
                 <td>{{@$key->sale_price}}</td>
