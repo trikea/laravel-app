@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f3e4445cbb37af2c426d97e673c404a",
+    "content-hash": "020e2e15cc3a922eb07cc3bcb38f192c",
     "packages": [
         {
             "name": "backpack/crud",
@@ -92,6 +92,66 @@
                 "update"
             ],
             "time": "2019-12-17T08:21:08+00:00"
+        },
+        {
+            "name": "backpack/logmanager",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Backpack/LogManager.git",
+                "reference": "ae49ef94a80e3d530cd63db84a5a6910411edfcc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Backpack/LogManager/zipball/ae49ef94a80e3d530cd63db84a5a6910411edfcc",
+                "reference": "ae49ef94a80e3d530cd63db84a5a6910411edfcc",
+                "shasum": ""
+            },
+            "require": {
+                "backpack/crud": "^4.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Backpack\\LogManager\\LogManagerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Backpack\\LogManager\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Tabacitu",
+                    "email": "hello@tabacitu.ro",
+                    "homepage": "http://tabacitu.ro",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An interface to preview, download and delete Laravel log files.",
+            "homepage": "https://github.com/laravel-backpack/LogManager",
+            "keywords": [
+                "backpack",
+                "laravel",
+                "log interface",
+                "log manager",
+                "logs"
+            ],
+            "time": "2019-09-24T15:33:58+00:00"
         },
         {
             "name": "backpack/permissionmanager",
