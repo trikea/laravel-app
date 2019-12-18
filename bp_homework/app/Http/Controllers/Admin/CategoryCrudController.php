@@ -26,7 +26,7 @@ class CategoryCrudController extends CrudController
         $this->crud->setModel('App\Models\Category');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/category');
         $this->crud->setEntityNameStrings('category', 'categories');
-        $this->crud->denyAccess(['list', 'create', 'delete']);
+        // $this->crud->denyAccess(['list', 'create', 'delete']);
     }
 
     protected function setupListOperation()
